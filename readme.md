@@ -4,5 +4,5 @@
 * runs any rom
 
 # known issuses
-* cannot create the temp.ch8 file autometically **this branch**
+* ~~cannot create the temp.ch8 file autometically~~ fixed in fix/cannot_create_temp 
 * needs better error handling
