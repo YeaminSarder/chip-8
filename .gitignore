@@ -1,3 +1,8 @@
+# ignore supplied roms
+chip-8-roms/
+*.ch8
+*.chp
+
 # ignore autosave files
 
 **/**#
