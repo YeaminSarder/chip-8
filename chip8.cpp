@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
   // std::cout << oterm.c_cc[VMIN];
   std::ifstream rom(argv[optind], std::ios::binary);
   std::fstream temp("temp.ch8",
-                    std::ios::binary | std::ios::in | std::ios::out);
+                    std::ios::binary | std::ios::in | std::ios::out| std::ios::trunc);
   std::ifstream irom("interpreter_rom.rom", std::ios::binary);
   temp << irom.rdbuf() << rom.rdbuf();
   temp.seekg(0x200);
