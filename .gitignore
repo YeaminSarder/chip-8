@@ -9,3 +9,5 @@ chip-8-roms/
 
 # dev files
 .emacs.desktop
+**/*.o
+chip8
