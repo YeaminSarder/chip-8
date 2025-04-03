@@ -1,13 +1,11 @@
-# ignore supplied roms
+# supplied roms
 chip-8-roms/
 *.ch8
 *.chp
 
-# ignore autosave files
-
+# autosave files
 **/**#
 **/**~
 
-# ignore dev files
-
+# dev files
 .emacs.desktop
