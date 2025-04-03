@@ -2,3 +2,7 @@
 
 **/**#
 **/**~
+
+# ignore dev files
+
+.emacs.desktop
