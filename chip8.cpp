@@ -42,6 +42,10 @@ std::array<Opc, 37> opcodes = {
 // std::ifstream rom;
 int DEBUG_LVL = 1;
 int fps = 60;
+
+void cleanup() {
+  ym::otermIn();
+}
 int main(int argc, char *argv[]) {
   while (true) {
     int o = getopt(argc, argv, "d:f:");
@@ -120,6 +124,6 @@ int main(int argc, char *argv[]) {
   ym::cursor_rest();
   ym::stop_timer_thread();
 
-  ym::otermIn();
+  cleanup();
   return 0;
 }
