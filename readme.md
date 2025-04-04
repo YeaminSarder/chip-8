@@ -5,6 +5,7 @@
 
 # feature
 * ctrl-c to cleanly exit **completed in feat/ctrl-c_clean_exit**
+* help message **working in feat/help**
 
 # known issuses
 * ~~cannot create the temp.ch8 file autometically~~ fixed in fix/cannot_create_temp 
