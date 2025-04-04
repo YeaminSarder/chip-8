@@ -4,7 +4,7 @@
 * runs any rom
 
 # feature
-* ctrl-c to cleanly exit **working in feat/ctrl-c_clean_exit**
+* ctrl-c to cleanly exit **completed in feat/ctrl-c_clean_exit**
 
 # known issuses
 * ~~cannot create the temp.ch8 file autometically~~ fixed in fix/cannot_create_temp 
