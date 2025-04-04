@@ -2,6 +2,20 @@
 #include <getopt.h>
 #include <iostream>
 
+const char *help_message =
+R"(Usage: chip8 [OPTIONS] ROM
+Emulate the chip8 ROM
+
+  -d, --debug-level=LEVEL    set debug level to LEVEL. default 1.
+                             0  -> disable
+                             >0 -> show registers
+                             >2 -> show callstack on return
+  -f, --fps=NUM              limits the framerate of emulation to NUM; default 60.
+                             set to 0 for no framerate limit.
+  -h, --help                 show this help
+)";
+
+
 const struct option longopts[] = {
     {.name = "debug-level",
      .has_arg = required_argument,
@@ -11,6 +25,8 @@ const struct option longopts[] = {
     {.name = "help", .has_arg = no_argument, .flag = NULL, .val = 'h'},
     {} //last element must be all zeros
 };
+
+
 
 void get_options(int argc, char *argv[], options *op) {
 
@@ -37,7 +53,7 @@ void get_options(int argc, char *argv[], options *op) {
       break;
     case 'h':
     case '?':
-      std::cerr << "help: chip8 [-d debug level] [-f fps] rom";
+      std::cerr << help_message;
       exit(1);
     }
   }
