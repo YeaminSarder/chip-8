@@ -13,6 +13,7 @@
 #include <string>
 #include <termios.h>
 #include <unistd.h>
+#include <signal.h>
 typedef std::uint16_t op;
 
 struct Opc {
@@ -45,8 +46,20 @@ int fps = 60;
 
 void cleanup() {
   ym::otermIn();
+void on_interupt(int s) {
+  cleanup();
+  exit(s);
+};
+void set_sigaction() {
+  struct sigaction sa;
+  sa.sa_handler = on_interupt;
+  sigemptyset(&sa.sa_mask);
+  sa.sa_flags = 0;
+  sigaction(SIGINT, &sa, NULL);
 }
+
 int main(int argc, char *argv[]) {
+  set_sigaction();
   while (true) {
     int o = getopt(argc, argv, "d:f:");
     if (o == -1)
