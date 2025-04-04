@@ -11,6 +11,7 @@ namespace ym {
   void stop_timer_thread();
   inline void printAt(int x, int y, std::string c);
   void clear();
+  void clearDisplay();
   void cursor_rest();
   void CLR(op o);
   void RET(op o);

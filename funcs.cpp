@@ -75,6 +75,9 @@ void stop_timer_thread() {
 inline void printAt(int x, int y, std::string c) {
   std::cout << "\x1B[" << y << ";" << x << "H" << c;
 }
+  void clearDisplay() {
+    std::cout << "\x1B[2J";
+  }
 
 void printRegs() {
   int x = 1;
