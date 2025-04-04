@@ -1,9 +1,8 @@
 #include "funcs.h"
 #include "term.h"
 #include <array>
-
+#include "options.h"
 //#include <fstream>
-#include <bits/getopt_core.h>
 #include <cerrno>
 #include <cstdlib>
 #include <cstring>
@@ -12,9 +11,6 @@
 #include <iostream>
 //#include <string>
 #include <cstdio>
-#include <getopt.h>
-#include <stdexcept>
-#include <string>
 #include <termios.h>
 #include <unistd.h>
 #include <signal.h>
@@ -45,8 +41,6 @@ std::array<Opc, 37> opcodes = {
 };
 
 // std::ifstream rom;
-int DEBUG_LVL = 1;
-int fps = 60;
 
 void cleanup() {
   ym::stop_timer_thread();
@@ -74,40 +68,17 @@ void check_file_open_error(std::ios const *f, char const* msg = "") {
     exit(e);
       }
 };
+options m_option;
+int DEBUG_LVL = m_option.debug_lvl;
 int main(int argc, char *argv[]) {
+  get_options(argc, argv, &m_option);
+  DEBUG_LVL = m_option.debug_lvl;
   set_sigaction();
-  while (true) {
-    int o = getopt(argc, argv, "d:f:");
-    if (o == -1)
-      break;
-    switch (o) {
-    case 'd':
-      try {
-        DEBUG_LVL = std::stoi(optarg);
-      } catch (std::invalid_argument) {
-        std::cout << "Debug level must be an integer";
-        return 1;
-      };
-      break;
-    case 'f':
-      try {
-        fps = std::stoi(optarg);
-      } catch (std::invalid_argument) {
-        std::cout << "fps must be an integer";
-        return 1;
-      };
-      break;
-    case '?':
-      std::cerr << "help: chip8 [-d debug level] [-f fps] rom";
-      return 1;
-    }
-  }
-  
   ym::term_init();
   ym::ntermIn();
   // std::cout << oterm.c_cc[VMIN];
-  std::ifstream rom(argv[optind], std::ios::binary);
-  check_file_open_error(&rom,argv[optind]);
+  std::ifstream rom(m_option.filename, std::ios::binary);
+  check_file_open_error(&rom,m_option.filename);
   std::fstream temp("temp.ch8",
                     std::ios::binary | std::ios::in | std::ios::out| std::ios::trunc);
   check_file_open_error(&temp,"temp.ch8");
@@ -139,8 +110,8 @@ int main(int argc, char *argv[]) {
 
       // printf("%.4x", o.value);
     }
-    if (fps)
-    usleep(1000000/fps);
+    if (m_option.fps)
+    usleep(1000000/m_option.fps);
   }
 
   // char a[1];
