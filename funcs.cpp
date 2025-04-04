@@ -62,7 +62,9 @@ void share_rom(std::fstream *r) { romptr = r; };
 void start_timer_thread() { th = std::thread(timer_thread, &timer, &sound); };
 void stop_timer_thread() {
   keep_alive = false;
-  th.join();
+  if (th.joinable()) {
+    th.join();
+  }
 };
 
 

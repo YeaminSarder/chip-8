@@ -4,8 +4,9 @@
 
 //#include <fstream>
 #include <bits/getopt_core.h>
+#include <cerrno>
 #include <cstdlib>
-#include <exception>
+#include <cstring>
 #include <fstream>
 #include <ios>
 #include <iostream>
@@ -67,9 +68,10 @@ void set_sigaction() {
 
 void check_file_open_error(std::ios const *f, char const* msg = "") {
   if (f->fail()) {
-    std::perror(msg);
+    int e = errno;
     cleanup();
-    abort();
+    std::cout << msg << ": " << strerror(e);
+    exit(e);
       }
 };
 int main(int argc, char *argv[]) {
