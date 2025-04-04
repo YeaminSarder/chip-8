@@ -29,7 +29,7 @@ void ntermIn() {
   }
 void btermIn() { tcsetattr(STDIN_FILENO, TCSANOW, &bterm); }
 void otermIn() {
-  tcsetattr(STDIN_FILENO, TCSANOW, &nterm);
+  tcsetattr(STDIN_FILENO, TCSANOW, &oterm);
   std::cout << "\x1b[?25h"; //show cursor
 }
 
