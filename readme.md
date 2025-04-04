@@ -9,7 +9,7 @@
 # known issuses
 * ~~cannot create the temp.ch8 file autometically~~ fixed in fix/cannot_create_temp 
 * needs better error handling **working in feat/logs_n_errors**
-
+** [X] file errors
 
 
 
