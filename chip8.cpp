@@ -45,6 +45,7 @@ int DEBUG_LVL = 1;
 int fps = 60;
 
 void cleanup() {
+  ym::stop_timer_thread();
   ym::otermIn();
 void on_interupt(int s) {
   cleanup();
@@ -135,7 +136,6 @@ int main(int argc, char *argv[]) {
   // ym::clear();
   temp.close();
   ym::cursor_rest();
-  ym::stop_timer_thread();
 
   cleanup();
   return 0;
