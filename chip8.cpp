@@ -47,6 +47,9 @@ int fps = 60;
 void cleanup() {
   ym::stop_timer_thread();
   ym::otermIn();
+  ym::clearDisplay();
+}
+
 void on_interupt(int s) {
   cleanup();
   exit(s);
@@ -135,7 +138,6 @@ int main(int argc, char *argv[]) {
   // std::cout << a;
   // ym::clear();
   temp.close();
-  ym::cursor_rest();
 
   cleanup();
   return 0;
