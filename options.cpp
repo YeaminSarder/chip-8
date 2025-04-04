@@ -1,10 +1,21 @@
 #include "options.h"
+#include <getopt.h>
 #include <iostream>
-#include <bits/getopt_core.h>
 
-void get_options(int argc, char* argv[], options *op) {
+const struct option longopts[] = {
+    {.name = "debug-level",
+     .has_arg = required_argument,
+     .flag = NULL,
+     .val = 'd'},
+    {.name = "fps", .has_arg = required_argument, .flag = NULL, .val = 'f'},
+    {.name = "help", .has_arg = no_argument, .flag = NULL, .val = 'h'},
+    {} //last element must be all zeros
+};
+
+void get_options(int argc, char *argv[], options *op) {
+
   while (true) {
-    int o = getopt(argc, argv, "d:f:");
+    int o = getopt_long(argc, argv, "hd:f:", longopts, NULL);
     if (o == -1)
       break;
     switch (o) {
@@ -24,6 +35,7 @@ void get_options(int argc, char* argv[], options *op) {
         exit(1);
       };
       break;
+    case 'h':
     case '?':
       std::cerr << "help: chip8 [-d debug level] [-f fps] rom";
       exit(1);
