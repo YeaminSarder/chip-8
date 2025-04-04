@@ -4,7 +4,10 @@
 
 //#include <fstream>
 #include <bits/getopt_core.h>
+#include <cstdlib>
 #include <exception>
+#include <fstream>
+#include <ios>
 #include <iostream>
 //#include <string>
 #include <cstdio>
@@ -62,6 +65,13 @@ void set_sigaction() {
   sigaction(SIGINT, &sa, NULL);
 }
 
+void check_file_open_error(std::ios const *f, char const* msg = "") {
+  if (f->fail()) {
+    std::perror(msg);
+    cleanup();
+    abort();
+      }
+};
 int main(int argc, char *argv[]) {
   set_sigaction();
   while (true) {
@@ -95,9 +105,12 @@ int main(int argc, char *argv[]) {
   ym::ntermIn();
   // std::cout << oterm.c_cc[VMIN];
   std::ifstream rom(argv[optind], std::ios::binary);
+  check_file_open_error(&rom,argv[optind]);
   std::fstream temp("temp.ch8",
                     std::ios::binary | std::ios::in | std::ios::out| std::ios::trunc);
+  check_file_open_error(&temp,"temp.ch8");
   std::ifstream irom("interpreter_rom.rom", std::ios::binary);
+  check_file_open_error(&irom,"interpreter_rom.rom");
   temp << irom.rdbuf() << rom.rdbuf();
   temp.seekg(0x200);
   temp.seekp(0x200);
