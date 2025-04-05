@@ -57,5 +57,11 @@ void get_options(int argc, char *argv[], options *op) {
       exit(1);
     }
   }
-  op->filename = argv[optind];
+  if (optind < argc) {
+    op->filename = argv[optind];
+  } else {
+    std::cerr << "./chip8: ROM is not optional.\n";
+    std::cerr << help_message;
+    exit(1);
+  }
 }
