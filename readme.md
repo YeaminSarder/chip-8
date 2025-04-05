@@ -35,6 +35,7 @@ Note: this repo does not provide chip8 roms. you can find them in [this](https:/
 # feature
 * ctrl-c to cleanly exit (completed in feat/ctrl-c_clean_exit)
 * help message (completed in feat/help)
+* inputmap option (working in feat/map_option)
 
 # known issuses
 * ~~cannot create the temp.ch8 file autometically~~ (fixed in fix/cannot_create_temp) 
