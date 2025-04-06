@@ -22,7 +22,7 @@ struct Opc {
   void (*func)(op);
 };
 
-namespace ym {} // namespace ym
+
 #define NUM_opc 26
 std::array<Opc, 37> opcodes = {
     Opc{0xffff, 0x00e0, ym::CLR},     Opc{0xffff, 0x00ee, ym::RET},
@@ -72,6 +72,9 @@ options m_option;
 int DEBUG_LVL = m_option.debug_lvl;
 int main(int argc, char *argv[]) {
   get_options(argc, argv, &m_option);
+  if (!m_option.keymap.empty()) {
+    ym::set_keymap(m_option.keymap);
+  }
   DEBUG_LVL = m_option.debug_lvl;
   set_sigaction();
   ym::term_init();
