@@ -392,6 +392,19 @@ void LDFNT(op o) {
   I = regs[x] * 5;
   regdebug();
 }
+void seekp_force(std::iostream &s, std::ios::pos_type p, char fill = '\0') {
+  s.seekp(p);
+  if (s.fail()) {
+    s.clear();
+    s.seekp(0,std::ios::end);
+    s.seekp(p);
+  }
+  while (s.fail()) {
+    s.clear();
+    s << fill;
+    s.seekp(p);
+  }
+}
 void BCD(op o) {
   char x = (o >> 8) & 0xf;
   char r = regs[x];
@@ -400,18 +413,16 @@ void BCD(op o) {
   char b = r % 10;
   char a = r / 10;
   auto save = romptr->tellg();
-  romptr->seekp(I);
+  seekp_force(*romptr,I);
   romptr->put(a);
-  romptr->seekg(I + 1);
   romptr->put(b);
-  romptr->seekg(I + 2);
   romptr->put(c);
   romptr->seekg(save);
 }
 void REGDUMP(op o) {
   char x = (o >> 8) & 0xf;
   auto save = romptr->tellg();
-  romptr->seekp(I);
+  seekp_force(*romptr,I);
   for (int i = 0; i <= x; i++) {
     romptr->put(regs[i]);
   };
