@@ -72,7 +72,15 @@ options m_option;
 int DEBUG_LVL = m_option.debug_lvl;
 int main(int argc, char *argv[]) {
   get_options(argc, argv, &m_option);
-  if (!m_option.keymap.empty()) {
+  if (m_option.bufsize > 0) {
+    char *buf = (char *)malloc(m_option.bufsize);
+    int s = setvbuf(stdout, buf, _IOFBF, m_option.bufsize);
+    if (s) std::perror("While setteng buffer");
+  } else {
+    int s = setvbuf(stdout, NULL, _IONBF, 0);
+    if (s) std::perror("While setteng buffer");
+  }
+    if (!m_option.keymap.empty()) {
     ym::set_keymap(m_option.keymap);
   }
   DEBUG_LVL = m_option.debug_lvl;

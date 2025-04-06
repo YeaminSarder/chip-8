@@ -25,6 +25,9 @@ Emulate the chip8 ROM
   -h, --help               show this help
   -m, --inputmap=MAP       MAP must be exactly 16 characters. default 0123456789abcdef
                            You can use these characters as key intead of 0x0-0xf
+  -b, --bufsize=SIZE       buffers output for speed. may give visual glitch.
+                           0  -> disable buffering; _IONBF mode
+                           >0 -> buffer with size SIZE; _IOFBF mode
 ```
 
 Note: this repo does not provide chip8 roms. you can find them in [this](https://github.com/kripod/chip8-roms) repo.
@@ -39,6 +42,7 @@ Note: this repo does not provide chip8 roms. you can find them in [this](https:/
 * help message (completed in feat/help)
 * inputmap option (completed in feat/map_option)
 * the chip8 binary can be moved (working in feat/portable)
+* output buffering option
 
 # known issuses
 * ~~cannot create the temp.ch8 file autometically~~ (fixed in fix/cannot_create_temp) 

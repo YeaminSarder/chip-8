@@ -16,6 +16,9 @@ Emulate the chip8 ROM
   -h, --help               show this help
   -m, --inputmap=MAP       MAP must be exactly 16 characters. default 0123456789abcdef
                            You can use these characters as key intead of 0x0-0xf
+  -b, --bufsize=SIZE       buffers output for speed. may give visual glitch.
+                           0  -> disable buffering; _IONBF mode
+                           >0 -> buffer with size SIZE; _IOFBF mode
 )";
 
 
@@ -27,6 +30,7 @@ const struct option longopts[] = {
     {.name = "fps", .has_arg = required_argument, .flag = NULL, .val = 'f'},
     {.name = "help", .has_arg = no_argument, .flag = NULL, .val = 'h'},
     {.name = "inputmap", .has_arg = required_argument, .flag = NULL, .val = 'm'},
+    {.name = "bufsize", .has_arg = required_argument, .flag = NULL, .val = 'b'},
     {} //last element must be all zeros
 };
 
@@ -35,7 +39,7 @@ const struct option longopts[] = {
 void get_options(int argc, char *argv[], options *op) {
 
   while (true) {
-    int o = getopt_long(argc, argv, "hd:f:m:", longopts, NULL);
+    int o = getopt_long(argc, argv, "hb:d:f:m:", longopts, NULL);
     if (o == -1)
       break;
     switch (o) {
@@ -64,6 +68,14 @@ void get_options(int argc, char *argv[], options *op) {
       for (int i=0; i < 16; ++i) {
 	op->keymap.emplace(optarg[i],i);
       }
+      break;
+    case 'b':
+      try {
+        op->bufsize = std::stoi(optarg);
+      } catch (std::invalid_argument) {
+        std::cerr << "SIZE must be an integer";
+        exit(1);
+      };
       break;
     case 'h':
     case '?':
