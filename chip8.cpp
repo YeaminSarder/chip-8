@@ -94,23 +94,13 @@ int main(int argc, char *argv[]) {
   set_sigaction();
   ym::term_init();
   ym::ntermIn();
-  // std::cout << oterm.c_cc[VMIN];
   std::ifstream rom(m_option.filename, std::ios::binary);
   check_file_open_error(&rom,m_option.filename);
-  std::fstream temp("temp.ch8",
-                    std::ios::binary | std::ios::in | std::ios::out| std::ios::trunc);
-  check_file_open_error(&temp,"temp.ch8");
-  //std::ifstream irom("interpreter_rom.rom", std::ios::binary);
-  //check_file_open_error(&irom,"interpreter_rom.rom");
+  std::stringstream temp{};
   temp << irom << rom.rdbuf();
   temp.seekg(0x200);
   temp.seekp(0x200);
-  // temp.close();
-  // temp = std::fstream ("temp.ch8",
-  //                  std::ios::binary | std::ios::in | std::ios::out);
-
   rom.close();
-  //  std::ofstream
   ym::share_rom(&temp);
   ym::start_timer_thread();
   ym::clear();
@@ -141,7 +131,6 @@ int main(int argc, char *argv[]) {
 
   // std::cout << a;
   // ym::clear();
-  temp.close();
 
   cleanup();
   return 0;
