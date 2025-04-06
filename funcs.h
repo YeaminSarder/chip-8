@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <map>
 #include <string>
 #include <fstream>
 #include <thread>
@@ -7,6 +8,7 @@
 typedef std::uint16_t op;
 namespace ym {
   void share_rom(std::fstream* rom);
+  void set_keymap(std::map<char, char> const &km);
   void start_timer_thread();
   void stop_timer_thread();
   inline void printAt(int x, int y, std::string c);

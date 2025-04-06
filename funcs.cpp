@@ -8,7 +8,6 @@
 #include <exception>
 #include <fstream>
 #include <iostream>
-#include <map>
 #include <ostream>
 #include <random>
 #include <stack>
@@ -39,12 +38,16 @@ char sound = 0;
 bool keep_alive = true;
 std::thread th;
 
-std::map<char, char> keymap{
+std::map<char, char> keymap {
     {'0', 0x00}, {'1', 0x01}, {'2', 0x02}, {'3', 0x03},
     {'4', 0x04}, {'5', 0x05}, {'6', 0x06}, {'7', 0x07},
     {'8', 0x08}, {'9', 0x09}, {'a', 0x0a}, {'b', 0x0b},
     {'c', 0x0c}, {'d', 0x0d}, {'e', 0x0e}, {'f', 0x0f},
 };
+  
+  void set_keymap(std::map<char, char> const &km) {
+    keymap = km;
+  }
 
 void timer_thread(char *t, char *s) {
   while (keep_alive) {
