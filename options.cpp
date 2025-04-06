@@ -10,7 +10,8 @@ Emulate the chip8 ROM
   -d, --debug-level=LEVEL  set debug level to LEVEL. default 1.
                            0  -> disable
                            >0 -> show registers
-                           >2 -> show callstack on return
+                           >1 -> show opcodes
+                           >2 -> show callstack
   -f, --fps=NUM            limits the framerate of emulation to NUM; default 60.
                            set to 0 for no framerate limit.
   -h, --help               show this help

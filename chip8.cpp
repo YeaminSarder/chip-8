@@ -4,6 +4,7 @@
 #include "options.h"
 //#include <fstream>
 #include <cerrno>
+#include <cstdint>
 #include <cstdlib>
 #include <cstring>
 #include <fstream>
@@ -11,6 +12,8 @@
 #include <iostream>
 //#include <string>
 #include <cstdio>
+#include <sstream>
+#include <string>
 #include <termios.h>
 #include <unistd.h>
 #include <signal.h>

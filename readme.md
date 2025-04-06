@@ -19,7 +19,8 @@ Emulate the chip8 ROM
   -d, --debug-level=LEVEL  set debug level to LEVEL. default 1.
                            0  -> disable
                            >0 -> show registers
-                           >2 -> show callstack on return
+                           >1 -> show opcodes
+                           >2 -> show callstack
   -f, --fps=NUM            limits the framerate of emulation to NUM; default 60.
                            set to 0 for no framerate limit.
   -h, --help               show this help
@@ -43,6 +44,9 @@ Note: this repo does not provide chip8 roms. you can find them in [this](https:/
 * inputmap option (completed in feat/map_option)
 * the chip8 binary can be moved (working in feat/portable)
 * output buffering option
+* debug lvl 1: registers (done)
+* debug lvl 2: opcodes (done)
+* debug lvl 3: stack (to enhance)
 
 # known issuses
 * ~~cannot create the temp.ch8 file autometically~~ (fixed in fix/cannot_create_temp) 

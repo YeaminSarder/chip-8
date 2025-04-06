@@ -435,6 +435,16 @@ std::fstream &readopc(std::fstream &i, op &o) {
   o = c1;
   o <<= 8;
   o |= c2;
+  if (DEBUG_LVL >1) {
+    char s[12];
+    int pos = (int)i.tellg() - 2;
+    std::sprintf(s, "@%.4x: %.4x", pos,o);
+      
+      for (int i=1; i<33;++i) {
+	printAt(71, i, " ");
+      }
+      printAt(71, pos/2%32 + 1, s);
+  }
   return i;
 }
 
