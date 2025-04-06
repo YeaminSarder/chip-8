@@ -7,7 +7,9 @@
 #include <cstdio>
 #include <exception>
 #include <fstream>
+#include <ios>
 #include <iostream>
+#include <istream>
 #include <ostream>
 #include <random>
 #include <stack>
@@ -27,7 +29,7 @@ std::uint16_t PC = 0;
 std::uint16_t I = 0;
 bool hold = false;
 
-std::fstream *romptr;
+std::iostream *romptr;
 
 std::random_device rdev;
 std::default_random_engine reng(rdev());
@@ -61,13 +63,13 @@ void timer_thread(char *t, char *s) {
   }
 }
 
-void share_rom(std::fstream *r) { romptr = r; };
+void share_rom(std::iostream *r) { romptr = r; };
 void start_timer_thread() { th = std::thread(timer_thread, &timer, &sound); };
 void stop_timer_thread() {
   keep_alive = false;
   if (th.joinable()) {
-    th.join();
   }
+    th.join();
 };
 
 
@@ -427,7 +429,7 @@ void REGLOAD(op o) {
   romptr->seekg(save);
   regdebug();
 }
-std::fstream &readopc(std::fstream &i, op &o) {
+std::iostream &readopc(std::iostream &i, op &o) {
   char c1;
   i.read(&c1, 1);
   char c2;

@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <istream>
 #include <map>
 #include <string>
 #include <fstream>
@@ -7,7 +8,7 @@
 //extern std::ifstream rom; 
 typedef std::uint16_t op;
 namespace ym {
-  void share_rom(std::fstream* rom);
+  void share_rom(std::iostream* rom);
   void set_keymap(std::map<char, char> const &km);
   void start_timer_thread();
   void stop_timer_thread();
@@ -42,5 +43,5 @@ namespace ym {
   void REGDUMP(op o);
   void REGLOAD(op o);
 
- std::fstream &readopc(std::fstream &i, op &o);
+ std::iostream &readopc(std::iostream &i, op &o);
 }
