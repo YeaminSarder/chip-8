@@ -16,13 +16,15 @@ make
 Usage: chip8 [OPTIONS] ROM
 Emulate the chip8 ROM
 
-  -d, --debug-level=LEVEL    set debug level to LEVEL. default 1.
-                             0  -> disable
-                             >0 -> show registers
-                             >2 -> show callstack on return
-  -f, --fps=NUM              limits the framerate of emulation to NUM; default 60.
-                             set to 0 for no framerate limit.
-  -h, --help                 show this help
+  -d, --debug-level=LEVEL  set debug level to LEVEL. default 1.
+                           0  -> disable
+                           >0 -> show registers
+                           >2 -> show callstack on return
+  -f, --fps=NUM            limits the framerate of emulation to NUM; default 60.
+                           set to 0 for no framerate limit.
+  -h, --help               show this help
+  -m, --inputmap=MAP       MAP must be exactly 16 characters. default 0123456789abcdef
+                           You can use these characters as key intead of 0x0-0xf
 ```
 
 Note: this repo does not provide chip8 roms. you can find them in [this](https://github.com/kripod/chip8-roms) repo.
@@ -35,7 +37,7 @@ Note: this repo does not provide chip8 roms. you can find them in [this](https:/
 # feature
 * ctrl-c to cleanly exit (completed in feat/ctrl-c_clean_exit)
 * help message (completed in feat/help)
-* inputmap option (working in feat/map_option)
+* inputmap option (completed in feat/map_option)
 
 # known issuses
 * ~~cannot create the temp.ch8 file autometically~~ (fixed in fix/cannot_create_temp) 
