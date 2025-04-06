@@ -71,6 +71,10 @@ void check_file_open_error(std::ios const *f, char const* msg = "") {
     exit(e);
       }
 };
+extern char _binary_interpreter_rom_rom_start[];
+extern const char _binary_interpreter_rom_rom_size;
+size_t rom_size = (uintptr_t)&_binary_interpreter_rom_rom_size;
+std::string_view irom(_binary_interpreter_rom_rom_start,rom_size);
 options m_option;
 int DEBUG_LVL = m_option.debug_lvl;
 int main(int argc, char *argv[]) {
@@ -96,9 +100,9 @@ int main(int argc, char *argv[]) {
   std::fstream temp("temp.ch8",
                     std::ios::binary | std::ios::in | std::ios::out| std::ios::trunc);
   check_file_open_error(&temp,"temp.ch8");
-  std::ifstream irom("interpreter_rom.rom", std::ios::binary);
-  check_file_open_error(&irom,"interpreter_rom.rom");
-  temp << irom.rdbuf() << rom.rdbuf();
+  //std::ifstream irom("interpreter_rom.rom", std::ios::binary);
+  //check_file_open_error(&irom,"interpreter_rom.rom");
+  temp << irom << rom.rdbuf();
   temp.seekg(0x200);
   temp.seekp(0x200);
   // temp.close();
