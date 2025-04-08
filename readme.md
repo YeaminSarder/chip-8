@@ -42,7 +42,7 @@ Note: this repo does not provide chip8 roms. you can find them in [this](https:/
 * ctrl-c to cleanly exit (completed in feat/ctrl-c_clean_exit)
 * help message (completed in feat/help)
 * inputmap option (completed in feat/map_option)
-* the chip8 binary can be moved (working in feat/portable)
+* the chip8 binary can be moved (completed in feat/portable)
 * output buffering option
 * debug lvl 1: registers (done)
 * debug lvl 2: opcodes (done)
