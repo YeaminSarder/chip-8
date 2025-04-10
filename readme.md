@@ -48,7 +48,7 @@ Note: this repo does not provide chip8 roms. you can find them in [this](https:/
 * debug lvl 1: registers (done)
 * debug lvl 2: opcodes (done)
 * debug lvl 3: stack (to enhance)
-* no-clear option (started feat/no-clear)
+* no-clear option (completed in feat/no-clear)
 
 # known issuses
 * ~~cannot create the temp.ch8 file autometically~~ (fixed in fix/cannot_create_temp) 
