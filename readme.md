@@ -29,6 +29,7 @@ Emulate the chip8 ROM
   -b, --bufsize=SIZE       buffers output for speed. may give visual glitch.
                            0  -> disable buffering; _IONBF mode
                            >0 -> buffer with size SIZE; _IOFBF mode
+  -n, --no-clear           prevent screen clearing after executing rom
 ```
 
 Note: this repo does not provide chip8 roms. you can find them in [this](https://github.com/kripod/chip8-roms) repo.
