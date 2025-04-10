@@ -6,5 +6,6 @@ typedef struct options {
   char* filename;
   int bufsize = 0;
   std::map<char,char> keymap = {};
+  int clear = 1;
 } options;
 void get_options(int argc, char* argv[], options *op);

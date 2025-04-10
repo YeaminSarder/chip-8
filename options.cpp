@@ -32,6 +32,7 @@ const struct option longopts[] = {
     {.name = "help", .has_arg = no_argument, .flag = NULL, .val = 'h'},
     {.name = "inputmap", .has_arg = required_argument, .flag = NULL, .val = 'm'},
     {.name = "bufsize", .has_arg = required_argument, .flag = NULL, .val = 'b'},
+    {.name = "no-clear", .has_arg = no_argument, .flag = NULL, .val = 'n'},
     {} //last element must be all zeros
 };
 
@@ -40,7 +41,7 @@ const struct option longopts[] = {
 void get_options(int argc, char *argv[], options *op) {
 
   while (true) {
-    int o = getopt_long(argc, argv, "hb:d:f:m:", longopts, NULL);
+    int o = getopt_long(argc, argv, "hnb:d:f:m:", longopts, NULL);
     if (o == -1)
       break;
     switch (o) {
@@ -69,6 +70,9 @@ void get_options(int argc, char *argv[], options *op) {
       for (int i=0; i < 16; ++i) {
 	op->keymap.emplace(optarg[i],i);
       }
+      break;
+    case 'n':
+      op->clear = 0;
       break;
     case 'b':
       try {

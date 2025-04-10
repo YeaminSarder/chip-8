@@ -44,11 +44,14 @@ std::array<Opc, 37> opcodes = {
 };
 
 // std::ifstream rom;
+options m_option;
 
 void cleanup() {
   ym::stop_timer_thread();
   ym::otermIn();
-  ym::clearDisplay();
+  if (m_option.clear) {
+    ym::clearDisplay();
+  }
 }
 
 void on_interupt(int s) {
@@ -75,7 +78,6 @@ extern char _binary_interpreter_rom_rom_start[];
 extern const char _binary_interpreter_rom_rom_size;
 size_t rom_size = (uintptr_t)&_binary_interpreter_rom_rom_size;
 std::string_view irom(_binary_interpreter_rom_rom_start,rom_size);
-options m_option;
 int DEBUG_LVL = m_option.debug_lvl;
 int main(int argc, char *argv[]) {
   get_options(argc, argv, &m_option);
