@@ -51,6 +51,8 @@ void cleanup() {
   ym::otermIn();
   if (m_option.clear) {
     ym::clearDisplay();
+  } else {
+    ym::cursor_rest();
   }
 }
 
